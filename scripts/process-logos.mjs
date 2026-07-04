@@ -110,7 +110,6 @@ async function createIconPng(size, outputPath, source) {
 
 async function createIconPngs(source) {
   await createIconPng(180, join(publicDir, 'apple-touch-icon.png'), source)
-  await createIconPng(128, join(publicDir, 'brand-mark.png'), source)
   await createIconPng(32, join(publicDir, 'favicon-32.png'), source)
   await createIconPng(16, join(publicDir, 'favicon-16.png'), source)
 }
