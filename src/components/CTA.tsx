@@ -1,14 +1,22 @@
 import { motion, useInView } from 'framer-motion'
-import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react'
-import { useRef } from 'react'
+import { Mail } from 'lucide-react'
+import { useRef, type ComponentType } from 'react'
+import { InstagramIcon, LinkedinIcon } from './SocialIcons'
 
-const email = 'contacto@bgx.com'
+const email = 'bgxconsultoria03@gmail.com'
+const instagramUrl = 'https://www.instagram.com/bgxconsultoria/'
+const linkedinUrl = 'https://www.linkedin.com/in/bgx-consultor%C3%ADa-digital-53a98541b/'
 
-const socialLinks = [
-  { href: 'mailto:contacto@bgx.com', label: 'Correo electrónico', icon: Mail },
-  { href: 'https://instagram.com/bgx', label: 'Instagram', icon: Instagram },
-  { href: 'https://linkedin.com/company/bgx', label: 'LinkedIn', icon: Linkedin },
-  { href: 'https://facebook.com/bgx', label: 'Facebook', icon: Facebook },
+const socialLinks: {
+  href: string
+  label: string
+  icon: ComponentType<{ size?: number }>
+}[] = [
+  { href: `mailto:${email}`, label: 'Correo electrónico', icon: Mail },
+  { href: instagramUrl, label: 'Instagram', icon: InstagramIcon },
+  ...(linkedinUrl
+    ? [{ href: linkedinUrl, label: 'LinkedIn', icon: LinkedinIcon }]
+    : []),
 ]
 
 const orbits = [
