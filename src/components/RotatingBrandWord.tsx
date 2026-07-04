@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
 import { rotatingWords } from '../data/brand'
+import { BrandMark } from './BrandMark'
 
 type Size = 'sm' | 'md' | 'lg' | 'hero'
 
@@ -8,30 +9,36 @@ const sizeConfig = {
   sm: {
     letters: 'text-lg',
     word: 'text-lg',
+    mark: 'sm' as const,
   },
   md: {
     letters: 'text-2xl',
     word: 'text-2xl',
+    mark: 'md' as const,
   },
   lg: {
     letters: 'text-4xl',
     word: 'text-4xl',
+    mark: 'lg' as const,
   },
   hero: {
     letters: 'text-5xl sm:text-6xl lg:text-7xl',
     word: 'text-5xl sm:text-6xl lg:text-7xl',
+    mark: 'hero' as const,
   },
 }
 
 interface RotatingBrandWordProps {
   size?: Size
   showPrefix?: boolean
+  showMark?: boolean
   className?: string
 }
 
 export function RotatingBrandWord({
   size = 'md',
   showPrefix = true,
+  showMark = false,
   className = '',
 }: RotatingBrandWordProps) {
   const [index, setIndex] = useState(0)
@@ -59,8 +66,8 @@ export function RotatingBrandWord({
       {showPrefix && (
         <span className={`shrink-0 ${config.letters} brand-letters`}>BG</span>
       )}
-      <span className="relative inline-grid shrink-0">
-        {/* Reserva el ancho/alto de la palabra más larga para evitar recortes */}
+      {showMark && <BrandMark size={config.mark} />}
+      <span className="relative inline-grid min-h-[1.15em] shrink-0 overflow-visible">
         <span
           className={`col-start-1 row-start-1 invisible whitespace-nowrap ${config.word}`}
           aria-hidden="true"

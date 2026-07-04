@@ -50,9 +50,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6 }}
-              className="mt-5"
+              className="mt-5 min-h-[1.2em] overflow-visible"
             >
-              <RotatingBrandWord size="lg" showPrefix={false} />
+              <RotatingBrandWord size="lg" showPrefix={false} className="block" />
             </motion.div>
             <motion.p
               initial={{ opacity: 0 }}

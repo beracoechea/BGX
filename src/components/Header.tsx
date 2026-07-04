@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { BrandMark } from './BrandMark'
 import { RotatingBrandWord } from './RotatingBrandWord'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -23,14 +22,8 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
       className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--bg-primary)]/80 backdrop-blur-xl"
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#" className="group flex items-center gap-2.5">
-          <motion.div
-            className="brand-mark-shell relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl p-1.5"
-            whileHover={{ scale: 1.05 }}
-          >
-            <BrandMark />
-          </motion.div>
-          <RotatingBrandWord size="sm" />
+        <a href="#" className="group flex items-center">
+          <RotatingBrandWord size="sm" showMark />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
