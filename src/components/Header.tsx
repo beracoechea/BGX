@@ -25,7 +25,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a href="#" className="group flex items-center gap-2.5">
           <motion.div
-            className="brand-mark-shell relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl p-1.5"
+            className="brand-mark-shell relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
             whileHover={{ scale: 1.05 }}
           >
             <BrandMark />

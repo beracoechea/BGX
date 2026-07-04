@@ -85,27 +85,40 @@ async function removeBackground(input, output, threshold = 48) {
   console.log(`Created ${output}`)
 }
 
+async function createIconPng(size, outputPath, source) {
+  const padding = 0.14
+  const innerSize = Math.round(size * (1 - padding * 2))
+  const logo = await sharp(source)
+    .resize(innerSize, innerSize, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toBuffer()
+
+  await sharp({
+    create: {
+      width: size,
+      height: size,
+      channels: 4,
+      background: { r: 5, g: 7, b: 20, alpha: 1 },
+    },
+  })
+    .composite([{ input: logo, gravity: 'center' }])
+    .png()
+    .toFile(outputPath)
+
+  console.log(`Created ${outputPath}`)
+}
+
 async function createIconPngs(source) {
-  await sharp(source)
-    .resize(180, 180, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .png()
-    .toFile(join(publicDir, 'apple-touch-icon.png'))
-
-  await sharp(source)
-    .resize(32, 32, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .png()
-    .toFile(join(publicDir, 'favicon-32.png'))
-
-  await sharp(source)
-    .resize(16, 16, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .png()
-    .toFile(join(publicDir, 'favicon-16.png'))
+  await createIconPng(180, join(publicDir, 'apple-touch-icon.png'), source)
+  await createIconPng(128, join(publicDir, 'brand-mark.png'), source)
+  await createIconPng(32, join(publicDir, 'favicon-32.png'), source)
+  await createIconPng(16, join(publicDir, 'favicon-16.png'), source)
 }
 
 await removeBackground(join(publicDir, 'logo.jpeg'), join(publicDir, 'logo.png'), 52)
 await removeBackground(join(publicDir, 'dark.jpeg'), join(publicDir, 'dark.png'), 40)
 await removeBackground(join(publicDir, 'light.jpeg'), join(publicDir, 'light.png'), 40)
 
-await createIconPngs(join(publicDir, 'favicon.svg'))
+await createIconPngs(join(publicDir, 'logo.png'))
 
 console.log('Logo assets ready')
