@@ -1,6 +1,15 @@
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, Mail, MessageCircle } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react'
 import { useRef } from 'react'
+
+const email = 'contacto@bgx.com'
+
+const socialLinks = [
+  { href: 'mailto:contacto@bgx.com', label: 'Correo electrónico', icon: Mail },
+  { href: 'https://instagram.com/bgx', label: 'Instagram', icon: Instagram },
+  { href: 'https://linkedin.com/company/bgx', label: 'LinkedIn', icon: Linkedin },
+  { href: 'https://facebook.com/bgx', label: 'Facebook', icon: Facebook },
+]
 
 const orbits = [
   { size: 6, duration: 8, radius: 120, delay: 0 },
@@ -82,30 +91,35 @@ export function CTA() {
             </motion.p>
 
             <motion.div
-              className="mt-10 flex flex-wrap items-center justify-center gap-4"
+              className="mt-10 flex flex-col items-center gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 }}
             >
-              <motion.a
-                href="mailto:contacto@bgx.com"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-semibold text-brand-700 shadow-xl"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+              <a
+                href={`mailto:${email}`}
+                className="inline-flex items-center gap-3 rounded-xl bg-white/10 px-6 py-4 text-lg font-semibold text-white backdrop-blur-sm ring-1 ring-white/20 transition-colors hover:bg-white/15"
               >
-                <Mail size={18} />
-                contacto@bgx.com
-              </motion.a>
-              <motion.a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-base font-semibold text-white backdrop-blur-sm"
-                whileHover={{ scale: 1.03, backgroundColor: 'rgba(255,255,255,0.2)' }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <MessageCircle size={18} />
-                Agendar llamada
-                <ArrowRight size={16} />
-              </motion.a>
+                <Mail size={20} className="text-brand-200" />
+                {email}
+              </a>
+
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {socialLinks.map(({ href, label, icon: Icon }) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('mailto:') ? undefined : '_blank'}
+                    rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                    aria-label={label}
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/30 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                    whileHover={{ scale: 1.08, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Icon size={20} />
+                  </motion.a>
+                ))}
+              </div>
             </motion.div>
           </div>
         </motion.div>
