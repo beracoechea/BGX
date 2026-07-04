@@ -106,7 +106,6 @@ await removeBackground(join(publicDir, 'logo.jpeg'), join(publicDir, 'logo.png')
 await removeBackground(join(publicDir, 'dark.jpeg'), join(publicDir, 'dark.png'), 40)
 await removeBackground(join(publicDir, 'light.jpeg'), join(publicDir, 'light.png'), 40)
 
-await createIconPngs(join(publicDir, 'logo.png'))
 await createIconPngs(join(publicDir, 'favicon.svg'))
 
 console.log('Logo assets ready')
