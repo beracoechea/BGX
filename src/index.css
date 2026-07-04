@@ -151,10 +151,6 @@ body {
   color: var(--brand-letters);
 }
 
-.brand-letters {
-  color: var(--brand-letters);
-}
-
 .brand-x {
   position: relative;
   display: inline-flex;
@@ -185,32 +181,26 @@ body {
 
 .brand-x__arm {
   position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26%;
+  height: 88%;
   border-radius: 999px;
   background: linear-gradient(
-    135deg,
+    160deg,
     var(--gradient-from) 0%,
-    var(--gradient-mid) 55%,
+    var(--gradient-mid) 50%,
     var(--gradient-to) 100%
   );
   box-shadow: 0 0 10px rgba(26, 130, 245, 0.35);
 }
 
-.brand-x__arm--bl {
-  width: 24%;
-  height: 72%;
-  bottom: 4%;
-  left: 8%;
-  transform: rotate(45deg);
-  transform-origin: bottom left;
+.brand-x__arm--1 {
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.brand-x__arm--tr {
-  width: 24%;
-  height: 72%;
-  top: 2%;
-  right: 6%;
-  transform: rotate(45deg);
-  transform-origin: top right;
+.brand-x__arm--2 {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .brand-x__pixel {
@@ -222,24 +212,24 @@ body {
 .brand-x__pixel--1 {
   width: 14%;
   height: 14%;
-  top: 8%;
-  right: 10%;
+  top: 2%;
+  right: 0;
   background: #00aeef;
 }
 
 .brand-x__pixel--2 {
   width: 11%;
   height: 11%;
-  top: 22%;
-  right: 4%;
+  top: 16%;
+  right: -6%;
   background: #1a82f5;
 }
 
 .brand-x__pixel--3 {
   width: 9%;
   height: 9%;
-  top: 34%;
-  right: 12%;
+  top: 28%;
+  right: 2%;
   background: #9c27b0;
 }
 
